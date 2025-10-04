@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Premium Dashboard - Job Sponsored</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #1e3a8a;
+      --gold: #f59e0b;
+      --green: #10b981;
+      --light: #f8fafc;
+      --dark: #1e293b;
+    }
+    body {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .tagline {
+      font-size: 1.3rem;
+      color: #475569;
+    }
+    
+    .premium-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(30, 58, 138, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--gold), #d97706);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .locker-placeholder {
+      text-align: center;
+      padding: 40px 20px;
+      background: white;
+      border-radius: 20px;
+      margin: 30px 0;
+      border: 2px dashed #cbd5e1;
+    }
+    .locker-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+    .locker-desc {
+      color: #64748b;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .steps {
+      text-align: left;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .step {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--gold);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: bold;
+    }
+    .note {
+      background: #fffbeb;
+      border-left: 4px solid var(--gold);
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 25px;
+      font-size: 0.95rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--gold), #d97706);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(245, 158, 11, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">Job Sponsored</div>
+      <div class="tagline">Your Premium Visa Job Dashboard</div>
+    </div>
+    
+    <div class="premium-card">
+      <div class="card-title">✨ Premium Features Unlocked!</div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">∞</div>
+          <div>Unlimited Jobs</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <div>No Experience Mixer</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📅</div>
+          <div>Custom Date Filter</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏠</div>
+          <div>Free Housing Alerts</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔥</div>
+          <div>Hot Job Radar</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📊</div>
+          <div>Dream Dashboard</div>
+        </div>
+      </div>
+      
+      <div class="locker-placeholder">
+        <div class="locker-title">🔓 Unlock Premium Access</div>
+        <div class="locker-desc">
+          Complete a quick offer to activate your 30-day Premium access!
+          No payment needed — just 2 minutes of your time.
+        </div>
+        
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>Click the button below</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>Complete a short survey or app install</div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>Get instant Premium access for 30 days!</div>
+          </div>
+        </div>
+        
+        <button class="btn" onclick="startUnlock()">
+          ✨ Activate Premium Now
+        </button>
+        
+        <div class="note">
+          <strong>Note:</strong> After deploying your site, replace this button with your Mylead Content Locker script.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function startUnlock() {
+      // In real app: this would trigger Mylead locker
+      alert('Mylead Content Locker will appear here after deployment!');
+      
+      // Simulate Premium activation
+      setTimeout(() => {
+        alert('✅ Premium activated! You now have 30 days of unlimited access.');
+        window.location.href = '/results';
+      }, 1000);
+    }
+    
+    // Auto-redirect if already Premium (simplified)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('unlocked') === 'true') {
+      document.querySelector('.locker-placeholder').style.display = 'none';
+      document.querySelector('.btn').style.display = 'none';
+    }
+  </script>
+</body>
+  </html>
