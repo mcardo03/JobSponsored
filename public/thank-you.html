@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✅ Premium Activated! - Job Sponsored</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .container {
+      text-align: center;
+      max-width: 500px;
+      z-index: 10;
+    }
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 20px;
+      animation: bounce 1s ease;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
+    }
+    .message {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .subtext {
+      color: #4d7c0f;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-block;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 6px 15px rgba(22, 163, 74, 0.4);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.5);
+    }
+    
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f59e0b;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Job Sponsored</div>
+    <div class="message">🎉 Premium Activated!</div>
+    <div class="subtext">
+      Your 30-day VisaPass is now active.<br>
+      Unlimited jobs, perks, and hot alerts await!
+    </div>
+    <a href="/results" class="btn">→ View Your Jobs</a>
+  </div>
+
+  <script>
+    // Confetti animation
+    function createConfetti() {
+      const colors = ['#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ef4444'];
+      const container = document.body;
+      
+      for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confetti.style.opacity = '0';
+        container.appendChild(confetti);
+        
+        // Animate
+        const animation = confetti.animate([
+          { top: '-10px', opacity: 0 },
+          { top: `${Math.random() * 100 + 20}vh`, opacity: 1 },
+          { top: '100vh', opacity: 0 }
+        ], {
+          duration: 3000 + Math.random() * 2000,
+          easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
+        });
+        
+        // Remove after animation
+        animation.onfinish = () => confetti.remove();
+      }
+    }
+    
+    // Start confetti on load
+    window.onload = createConfetti;
+    
+    // Auto-redirect after 5 seconds (optional)
+    setTimeout(() => {
+      window.location.href = '/results';
+    }, 5000);
+  </script>
+</body>
+</html>
