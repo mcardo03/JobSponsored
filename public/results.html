@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Results - Job Sponsored</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/heroicons@2.0.16/dist/outline/arrow-right-circle.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #1e3a8a;
+      --gold: #f59e0b;
+      --green: #10b981;
+      --light: #f8fafc;
+      --dark: #1e293b;
+    }
+    body {
+      background: #f1f5f9;
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+    }
+    .header {
+      background: white;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-container {
+      background: white;
+      padding: 20px;
+      margin: 16px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .search-inputs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    input, select {
+      flex: 1;
+      min-width: 120px;
+      padding: 14px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+    }
+    .filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: white;
+    }
+    .search-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--gold), #d97706);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .search-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+    }
+    
+    .results-container {
+      padding: 0 16px 20px;
+    }
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+      padding: 0 4px;
+    }
+    .results-count {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .premium-cta {
+      background: linear-gradient(135deg, var(--gold), #d97706);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+    
+    .job-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      animation: slideUp 0.5s ease-out;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .job-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .job-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+      color: #64748b;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .badge-visa {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid var(--green);
+    }
+    .badge-lmia {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+    .badge-hot {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border: 1px solid #ef4444;
+    }
+    .perks {
+      display: flex;
+      gap: 12px;
+      margin: 12px 0;
+      flex-wrap: wrap;
+    }
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fdf4;
+      color: var(--green);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    .btn-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background: white;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 12px;
+      transition: all 0.2s;
+    }
+    .btn-link:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-premium {
+      background: linear-gradient(135deg, var(--gold), #d97706);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .govt-section {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 16px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .govt-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    .govt-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .govt-btn {
+      padding: 14px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: white;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .govt-btn:hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-title { height: 24px; margin-bottom: 12px; }
+    .skeleton-meta { height: 16px; margin-bottom: 20px; }
+    .skeleton-btn { height: 44px; width: 120px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">Job Sponsored</div>
+  </div>
+
+  <div class="search-container">
+    <div class="search-inputs">
+      <input type="text" id="keyword" placeholder="Job title (e.g., nurse, driver)" value="developer">
+      <select id="country">
+        <option value="ca">Canada 🇨🇦</option>
+        <option value="gb">UK 🇬🇧</option>
+        <option value="de">Germany 🇩🇪</option>
+        <option value="au">Australia 🇦🇺</option>
+        <option value="sg">Singapore 🇸🇬</option>
+        <option value="us">USA 🇺🇸</option>
+      </select>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" id="visaFilter">Visa Sponsorship</button>
+      <button class="filter-btn" id="expFilter">No Experience</button>
+    </div>
+    <button class="search-btn" onclick="searchJobs()">🔍 Find Visa Jobs</button>
+  </div>
+
+  <div class="results-container">
+    <div class="results-header">
+      <div class="results-count" id="resultsCount">Loading jobs...</div>
+      <div class="premium-cta" id="premiumCta" style="display:none;">✨ Go Premium for Unlimited!</div>
+    </div>
+    
+    <!-- Skeleton loading -->
+    <div id="skeletonLoader">
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-meta"></div>
+      <div class="skeleton skeleton-btn"></div>
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-meta"></div>
+      <div class="skeleton skeleton-btn"></div>
+    </div>
+    
+    <div id="jobResults"></div>
+    
+    <div class="govt-section">
+      <div class="govt-title">Also check on official sites:</div>
+      <div class="govt-links" id="govtLinks">
+        <!-- Govt links loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let isPremium = false;
+    const username = localStorage.getItem('username') || 'dreamer';
+    
+    // Check if user has Premium (simplified for now)
+    // In real app: call /api/check-premium
+    function checkPremium() {
+      // For demo: assume no Premium
+      isPremium = false;
+      document.getElementById('premiumCta').style.display = 'inline-block';
+    }
+    
+    async function loadGovtLinks() {
+      const keyword = document.getElementById('keyword').value || 'developer';
+      const res = await fetch(`/api/govt-links?keyword=${encodeURIComponent(keyword)}`);
+      const links = await res.json();
+      
+      const container = document.getElementById('govtLinks');
+      container.innerHTML = `
+        <button class="govt-btn" onclick="window.open('${links.canada}', '_blank')">
+          🇨🇦 Canada
+        </button>
+        <button class="govt-btn" onclick="window.open('${links.eu}', '_blank')">
+          🇪🇺 Europe
+        </button>
+        <button class="govt-btn" onclick="window.open('${links.australia}', '_blank')">
+          🇦🇺 Australia
+        </button>
+        <button class="govt-btn" onclick="window.open('${links.singapore}', '_blank')">
+          🇸🇬 Singapore
+        </button>
+      `;
+    }
+    
+    async function searchJobs() {
+      const keyword = document.getElementById('keyword').value;
+      const country = document.getElementById('country').value;
+      
+      if (!keyword) {
+        alert('Please enter a job title');
+        return;
+      }
+      
+      // Show skeleton loader
+      document.getElementById('skeletonLoader').style.display = 'block';
+      document.getElementById('jobResults').innerHTML = '';
+      document.getElementById('resultsCount').textContent = 'Searching...';
+      
+      try {
+        const res = await fetch(`/api/jobs?keyword=${encodeURIComponent(keyword)}&country=${country}&isPremium=${isPremium}`);
+        const data = await res.json();
+        
+        document.getElementById('skeletonLoader').style.display = 'none';
+        document.getElementById('resultsCount').textContent = 
+          `${data.total} visa-friendly jobs found`;
+        
+        if (data.jobs.length === 0) {
+          document.getElementById('jobResults').innerHTML = 
+            '<div style="text-align:center; padding:40px; color:#64748b;">No visa jobs found. Try another keyword!</div>';
+          return;
+        }
+        
+        let html = '';
+        data.jobs.forEach(job => {
+          // Detect perks
+          const desc = (job.description?.text || '').toLowerCase();
+          const perks = [];
+          if (desc.includes('free accommodation') || desc.includes('free housing')) perks.push('🏠 Free Housing');
+          if (desc.includes('relocation')) perks.push('💸 Relocation Aid');
+          if (desc.includes('flights')) perks.push('✈️ Free Flights');
+          
+          html += `
+            <div class="job-card">
+              <div class="job-title">${job.title}</div>
+              <div class="job-meta">
+                <span>${job.company?.display_name || 'Confidential'}</span>
+                <span>📍 ${job.location?.display_name || 'Remote'}</span>
+              </div>
+              <div>
+                <span class="badge badge-visa">Visa Likely</span>
+                ${job.title.toLowerCase().includes('lmia') || job.description?.text?.toLowerCase().includes('lmia') ? 
+                  '<span class="badge badge-lmia">LMIA</span>' : ''}
+                ${!isPremium ? '<span class="badge badge-hot">Hot Job</span>' : ''}
+              </div>
+              ${perks.length > 0 ? `
+                <div class="perks">
+                  ${perks.map(p => `<span class="perk">${p}</span>`).join('')}
+                </div>
+              ` : ''}
+              <a href="${job.redirect_url}" target="_blank" class="btn-link">
+                View on Adzuna →
+              </a>
+              ${!isPremium ? `
+                <button class="btn-premium" onclick="unlockPremium()">
+                  🔓 Unlock Premium Features
+                </button>
+              ` : ''}
+            </div>
+          `;
+        });
+        
+        document.getElementById('jobResults').innerHTML = html;
+      } catch (e) {
+        document.getElementById('skeletonLoader').style.display = 'none';
+        document.getElementById('jobResults').innerHTML = 
+          '<div style="text-align:center; padding:40px; color:#ef4444;">Search failed. Try again!</div>';
+      }
+    }
+    
+    function unlockPremium() {
+      // In real app: redirect to Mylead locker
+      alert('Premium unlock coming soon! For now, enjoy these free visa jobs.');
+      // window.location.href = '/premium';
+    }
+    
+    // Initialize
+    checkPremium();
+    loadGovtLinks();
+    searchJobs(); // Load default jobs
+    
+    // Filter toggles
+    document.getElementById('visaFilter').onclick = function() {
+      this.classList.add('active');
+      document.getElementById('expFilter').classList.remove('active');
+    };
+    document.getElementById('expFilter').onclick = function() {
+      this.classList.add('active');
+      document.getElementById('visaFilter').classList.remove('active');
+    };
+  </script>
+</body>
+  </html>
