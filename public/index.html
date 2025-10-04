@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Sponsored - Visa Jobs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+    }
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
+    .tagline {
+      color: #475569;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+    
+    /* Liquid Grass Effect */
+    .liquid-grass {
+      position: relative;
+      margin: 30px 0 40px;
+      height: 120px;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+    .grass-layer {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        #10b981 0%, 
+        #34d399 25%, 
+        #10b981 50%, 
+        #34d399 75%, 
+        #10b981 100%);
+      animation: flow 8s linear infinite;
+      opacity: 0.3;
+    }
+    @keyframes flow {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .grass-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, transparent 70%);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: #1e3a8a;
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+    }
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(217, 119, 6, 0.3);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(217, 119, 6, 0.4);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+    .footer {
+      margin-top: 30px;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">Job Sponsored</div>
+    <div class="tagline">Visa-sponsored jobs. Zero stress.</div>
+    
+    <!-- Liquid Grass Animation -->
+    <div class="liquid-grass">
+      <div class="grass-layer"></div>
+      <div class="grass-overlay">✨ Dreamer</div>
+    </div>
+    
+    <div class="input-group">
+      <input type="text" id="username" placeholder="Choose your dreamer name (e.g., nurse_in_canada)" maxlength="20">
+    </div>
+    <button class="btn" onclick="login()">Continue →</button>
+    
+    <div class="footer">
+      No email. No password. Just your dream.
+    </div>
+  </div>
+
+  <script>
+    async function login() {
+      const username = document.getElementById('username').value.trim();
+      if (username.length < 4) {
+        alert('Username must be 4-20 characters (letters, numbers, underscores)');
+        return;
+      }
+      if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        alert('Only letters, numbers, and underscores allowed');
+        return;
+      }
+
+      // Save username
+      localStorage.setItem('username', username);
+      
+      // Redirect to results
+      window.location.href = '/results';
+    }
+
+    // Auto-focus input
+    document.getElementById('username').focus();
+  </script>
+</body>
+  </html>
