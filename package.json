@@ -1,0 +1,13 @@
+{
+  "name": "job-sponsored",
+  "version": "1.0.0",
+  "description": "Visa-sponsored job search for dreamers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  }
+}
