@@ -3,7 +3,11 @@ const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
 
-const app = express();
+const app = express();app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 const PORT = process.env.PORT || 3000;
 
 // Config (your keys pre-filled!)
